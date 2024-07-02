@@ -1,4 +1,4 @@
-    # %%
+    # %% hehehehehehehe
 # TODO:
 # - Understand what the hell is the input
 # - What the fuck is the CNN doing
