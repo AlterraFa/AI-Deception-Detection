@@ -31,7 +31,7 @@ from keras.callbacks import EarlyStopping
 import keras
 import scipy.io.matlab as mat
 
-directory = r"/mnt/C26889126889067F/Coding/Python/NeuralNetwork/Resources/EyeData"
+directory = r"Resources/EyeData"
 full_directory_files = glob.glob(directory + r"/*")
 print(full_directory_files)
 # %%
@@ -200,7 +200,7 @@ earlystopping = EarlyStopping(
 )
 
 
-model.compile(optimizer = optimizers.Adam(learning_rate = .0000001), metrics = ['accuracy'], loss = 'categorical_crossentropy')
+model.compile(optimizer = optimizers.Adam(learning_rate = .001), metrics = ['accuracy'], loss = 'categorical_crossentropy')
 csv_logger = keras.callbacks.CSVLogger(r"Resources/EyePhaseClassifier.csv")
 history = model.fit(x_train, y_train, epochs = 200, batch_size = 128, validation_data = [x_test, y_test], callbacks = [csv_logger, earlystopping], shuffle = True)
 
@@ -378,13 +378,11 @@ def irisCropper(eye) -> tuple[int, int]:
     
 
 
-linux_path = r"/mnt/C26889126889067F/Coding/Python/NeuralNetwork/Resources/dlib-models/shape_predictor_68_face_landmarks_GTX.dat"
-win_path = r"D:\Coding\Python\NeuralNetwork\Resources\dlib-models\shape_predictor_68_face_landmarks.dat"
 
-cap = cv2.VideoCapture(r"/mnt/C26889126889067F/Coding/Python/NeuralNetwork/Resources/c808b974a3e9f73953ebafde2b91b679.mp4")
-cnnDetector = dlib.cnn_face_detection_model_v1(r"/mnt/C26889126889067F/Coding/Python/NeuralNetwork/Resources/dlib-models/mmod_human_face_detector.dat")
+cap = cv2.VideoCapture(r"Resources/c808b974a3e9f73953ebafde2b91b679.mp4")
+cnnDetector = dlib.cnn_face_detection_model_v1(r"Resources/dlib-models/mmod_human_face_detector.dat")
 detect = dlib.get_frontal_face_detector()
-predictor = dlib.shape_predictor(linux_path)
+predictor = dlib.shape_predictor(r"Resources/dlib-models/shape_predictor_68_face_landmarks_GTX.dat")
 
 frame_cnt = 0
 start = time.time()
@@ -539,13 +537,11 @@ screen_width, screen_height = 1920, 1080
 screen = SCREEN((screen_width, screen_height), 30)
 
 
-linux_path = r"/mnt/C26889126889067F/Coding/Python/NeuralNetwork/Resources/dlib-models/shape_predictor_68_face_landmarks.dat"
-win_path = r"D:\Coding\Python\Neural Network\Resources\dlib-models\shape_predictor_68_face_landmarks.dat"
 cap = VideoCapture(0)
 
-cnnDetector = dlib.cnn_face_detection_model_v1(r"/mnt/C26889126889067F/Coding/Python/NeuralNetwork/Resources/dlib-models/mmod_human_face_detector.dat")
+cnnDetector = dlib.cnn_face_detection_model_v1(r"Resources/dlib-models/mmod_human_face_detector.dat")
 detect = dlib.get_frontal_face_detector()
-predictor = dlib.shape_predictor(linux_path)
+predictor = dlib.shape_predictor(r"Resources/dlib-models/shape_predictor_68_face_landmarks.dat")
 
 frame_cnt = 0
 start = time.time()
